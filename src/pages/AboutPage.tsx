@@ -46,6 +46,13 @@ export function AboutPage() {
       </div>
 
       <div className="card">
+        <h2 className="card__title">運営者情報</h2>
+        <p style={{ fontSize: '0.85rem', lineHeight: 1.8, color: '#64748b' }}>
+          お問い合わせ: <a href="mailto:tm.qp.sites@gmail.com">tm.qp.sites@gmail.com</a>
+        </p>
+      </div>
+
+      <div className="card">
         <h2 className="card__title">広告について</h2>
         <p style={{ fontSize: '0.85rem', lineHeight: 1.8, color: '#64748b' }}>
           本サイトでは、Google AdSenseによる広告配信を行っています。
