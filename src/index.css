@@ -752,3 +752,102 @@ a:hover {
     display: none !important;
   }
 }
+
+/* Affiliate Product Links */
+.product-links {
+  margin-top: 1.5rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: box-shadow 0.2s;
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.product-card__name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.product-card__desc {
+  font-size: 0.775rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.product-card__links {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.btn-amazon,
+.btn-rakuten {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-amazon:hover,
+.btn-rakuten:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.btn-amazon {
+  background: #ff9900;
+  color: #111111;
+}
+
+.btn-amazon:hover {
+  background: #e88a00;
+}
+
+.btn-rakuten {
+  background: #bf0000;
+  color: #ffffff;
+}
+
+.btn-rakuten:hover {
+  background: #a30000;
+}
+
+.affiliate-note {
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}

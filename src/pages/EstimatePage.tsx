@@ -18,6 +18,7 @@ import { CtaButton } from '../components/CtaButton';
 import { Disclaimer } from '../components/Disclaimer';
 import { Seo } from '../components/Seo';
 import { AdSense } from '../components/AdSense';
+import { ProductLinks } from '../components/ProductLinks';
 import { trackCalculation } from '../utils/analytics';
 
 type DistanceMode = 'direct' | 'prefecture';
@@ -437,6 +438,8 @@ export function EstimatePage() {
               3月の中でも特に高いのは月末（26〜31日）で、引越し件数が集中します。3月上旬はまだ比較的空きがあり料金も抑えられる傾向があります。もし日程をずらせるなら、4月上旬まで待つのも一つの選択肢です。4月に入ると需要が落ち着き始め、料金も下がっていきます。
             </p>
           </div>
+
+          <ProductLinks />
 
           <Disclaimer />
         </>

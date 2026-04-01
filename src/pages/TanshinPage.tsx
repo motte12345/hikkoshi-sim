@@ -7,6 +7,7 @@ import { CtaButton } from '../components/CtaButton';
 import { Disclaimer } from '../components/Disclaimer';
 import { Seo } from '../components/Seo';
 import { AdSense } from '../components/AdSense';
+import { ProductLinks } from '../components/ProductLinks';
 import { trackCalculation } from '../utils/analytics';
 
 type DistanceMode = 'direct' | 'prefecture';
@@ -256,6 +257,7 @@ export function TanshinPage() {
 
           <CtaButton toolName="tanshin" />
           <AdSense slot="tanshin-result" />
+          <ProductLinks />
           <Disclaimer />
         </>
       )}

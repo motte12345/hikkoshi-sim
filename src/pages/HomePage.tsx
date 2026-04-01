@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Seo } from '../components/Seo';
 import { AdSense } from '../components/AdSense';
+import { ProductLinks } from '../components/ProductLinks';
 
 const tools = [
   {
@@ -91,6 +92,8 @@ export function HomePage() {
           ※ 上記は近距離（同一都道府県内）の目安です。長距離の場合は距離加算が発生します。
         </p>
       </div>
+
+      <ProductLinks />
 
       <AdSense slot="home-bottom" />
     </>

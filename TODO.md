@@ -27,13 +27,25 @@
 ## Phase 5: トップ + About + SEO
 - [x] トップページ
 - [x] About・免責ページ
-- [x] SEO（meta, OGP, FAQSchema）
+- [x] SEO（meta, OGP, FAQSchema, WebSiteスキーマ）
+- [x] 補足コンテンツ（費用を安くするコツ、単身パックの違い等）
 - [x] sitemap.xml / robots.txt / 404
 
 ## Phase 6: 広告・アナリティクス
-- [x] AdSense 埋め込み
-- [x] GA4 埋め込み + カスタムイベント
+- [x] AdSense 埋め込み (ca-pub-6514048542181621)
+- [x] GA4 埋め込み + カスタムイベント (G-1KVJQCJGFL)
+- [x] Google Search Console 登録・サイトマップ送信
 
 ## Phase 7: デプロイ
 - [x] GitHub リポジトリ作成・push
-- [ ] Cloudflare Pages 連携（手動設定が必要）
+- [x] Cloudflare Pages 連携・自動デプロイ
+
+## UI/UX改善（実施済み）
+- [x] ハンバーガーメニュー（モバイル対応）
+- [x] ツールカードアイコン
+- [x] 結果表示グラデーション強化
+- [x] CTAパルスアニメーション
+- [x] ステップフェードインアニメーション
+- [x] 引越し費用→初期費用のデータ連携
+- [x] フォームバリデーション
+- [x] コードレビュー指摘修正
