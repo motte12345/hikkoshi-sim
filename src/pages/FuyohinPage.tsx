@@ -174,6 +174,25 @@ export function FuyohinPage() {
             </p>
           </div>
 
+          <div className="card">
+            <h2 className="card__title">不用品を安く処分する方法</h2>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8, marginBottom: '0.75rem' }}>
+              引越しのタイミングで不用品を処分する際は、捨てる前に「売れないか」を検討することが節約の第一歩です。処分方法によってコストや手間が大きく異なります。
+            </p>
+            <p style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.25rem' }}>フリマアプリ・ネットオークション</p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8, marginBottom: '0.75rem' }}>
+              メルカリ・ラクマなどを使えば、状態の良い家電や家具を相場価格で売ることができます。送料・手数料が発生しますが、リサイクルショップより高値がつくことも多いです。引越し日が決まったら早めに出品しましょう。
+            </p>
+            <p style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.25rem' }}>リサイクルショップへの持ち込み・出張買取</p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8, marginBottom: '0.75rem' }}>
+              手軽に現金化できるのが利点です。出張買取を使えば自宅まで来てくれるため、大型家具の処分にも向いています。ただし買取価格はフリマアプリより低めになりやすく、状態が悪いと買取不可になる場合もあります。
+            </p>
+            <p style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.25rem' }}>自治体の粗大ゴミ回収</p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8 }}>
+              売却できない品目は自治体の粗大ゴミ回収を利用しましょう。費用は品目ごとに数百〜数千円で比較的安く済みます。ただし予約が必要で、希望日に収集してもらえるまで数週間かかることがあります。引越し日から逆算して早めに申し込むことが大切です。なお、冷蔵庫・洗濯機・テレビ・エアコンは家電リサイクル法の対象のため、粗大ゴミとしては回収できません。
+            </p>
+          </div>
+
           <AdSense slot="fuyohin-result" />
           <Disclaimer />
         </>

@@ -235,6 +235,25 @@ export function TanshinPage() {
             </div>
           )}
 
+          <div className="card">
+            <h2 className="card__title">単身パックと通常プランの違い</h2>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8, marginBottom: '0.75rem' }}>
+              単身パックは、複数の荷主の荷物を1台のトラックに混載して運ぶサービスです。トラックを1台丸ごと借り切る通常プランと異なり、スペースを他の荷主と共有するため、荷物が少ない単身引越しではコストを抑えられます。
+            </p>
+            <p style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.25rem' }}>単身パックのメリット</p>
+            <ul style={{ fontSize: '0.9rem', lineHeight: 2, paddingLeft: '1.5rem', marginBottom: '0.75rem' }}>
+              <li>荷物量が少ない場合に通常プランより安くなりやすい</li>
+              <li>料金が明確で見積もり交渉が不要なケースが多い</li>
+              <li>一人暮らしの引越しに特化したサービス設計</li>
+            </ul>
+            <p style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: '0.25rem' }}>単身パックのデメリット</p>
+            <ul style={{ fontSize: '0.9rem', lineHeight: 2, paddingLeft: '1.5rem' }}>
+              <li>コンテナ（専用ボックス）に収まらない荷物は別途料金が発生する</li>
+              <li>混載のため、配送に時間がかかる場合がある（即日配達が難しいことも）</li>
+              <li>大型家具・家電がある場合は対応プランが限られる</li>
+            </ul>
+          </div>
+
           <CtaButton toolName="tanshin" />
           <AdSense slot="tanshin-result" />
           <Disclaimer />

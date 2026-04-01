@@ -5,10 +5,24 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>引越し費用シミュレーター</title>
-    <meta name="description" content="引越し費用の概算をステップ形式で簡単にシミュレーション。繁忙期・曜日・時間帯による料金差も明示します。" />
+    <meta name="description" content="引越し費用の概算をステップ形式で簡単にシミュレーション。繁忙期・曜日・時間帯による料金差も明示します。単身パック比較、初期費用計算、不用品処分コスト計算も無料で利用できます。" />
+
+    <!-- フォールバック用OGP（react-helmet-asyncが動作しない環境向け） -->
+    <meta property="og:title" content="引越し費用シミュレーター" />
+    <meta property="og:description" content="引越し費用の概算をステップ形式で簡単にシミュレーション。繁忙期・曜日・時間帯による料金差も明示します。単身パック比較、初期費用計算、不用品処分コスト計算も無料で利用できます。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hikkoshi-sim.pages.dev/" />
+    <meta property="og:locale" content="ja_JP" />
+
+    <!-- クローラー制御 -->
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://hikkoshi-sim.pages.dev/" />
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p>このサイトは JavaScript を有効にしてご利用ください。引越し費用シミュレーター・単身パック比較・初期費用計算・不用品処分コスト計算の無料ツールを提供しています。</p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -10,6 +10,13 @@ interface SeoProps {
 const SITE_NAME = '引越し費用シミュレーター';
 const BASE_URL = 'https://hikkoshi-sim.pages.dev';
 
+const WEBSITE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  url: `${BASE_URL}/`,
+};
+
 export function Seo({ title, description, path, faqItems }: SeoProps) {
   const fullTitle = path === '/' ? SITE_NAME : `${title} | ${SITE_NAME}`;
   const url = `${BASE_URL}${path}`;
@@ -47,6 +54,13 @@ export function Seo({ title, description, path, faqItems }: SeoProps) {
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
+
+      {/* WebSite Schema（トップページのみ） */}
+      {path === '/' && (
+        <script type="application/ld+json">
+          {JSON.stringify(WEBSITE_SCHEMA)}
+        </script>
+      )}
 
       {/* FAQ Schema */}
       {faqSchema && (

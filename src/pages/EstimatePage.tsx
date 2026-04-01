@@ -414,6 +414,30 @@ export function EstimatePage() {
             </button>
           </div>
 
+          <div className="card">
+            <h2 className="card__title">引越し費用を安くするコツ</h2>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8, marginBottom: '0.75rem' }}>
+              同じ条件でも、時期や業者の選び方次第で費用は大きく変わります。以下のポイントを押さえることで、数万円単位の節約につながることがあります。
+            </p>
+            <ul style={{ fontSize: '0.9rem', lineHeight: 2, paddingLeft: '1.5rem' }}>
+              <li><strong>閑散期（5〜11月）を狙う</strong> — 需要が少なく業者も値引きに応じやすい時期です。</li>
+              <li><strong>平日・フリー便を選ぶ</strong> — 土日祝や午前便と比べて10〜20%ほど安くなるケースがあります。</li>
+              <li><strong>荷物を減らす</strong> — 不用品は事前にフリマアプリやリサイクルショップで処分しておくと、搬出作業が減り基本料金が下がります。</li>
+              <li><strong>複数業者から見積もりを取る</strong> — 一括見積もりサービスを使うと、複数業者の料金を一度に比較できます。</li>
+              <li><strong>早めの予約で割引を受ける</strong> — 引越し日の1〜2ヶ月前に予約することで、早割が適用される業者もあります。</li>
+            </ul>
+          </div>
+
+          <div className="card">
+            <h2 className="card__title">3月の引越しはなぜ高い？</h2>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8 }}>
+              3月は新年度に向けた転勤・入学・就職が集中するシーズンです。この時期は引越し需要が一気に高まり、業者の作業員やトラックが慢性的に不足します。需給バランスが崩れることで料金が上がり、<strong>通常期の1.3〜1.5倍</strong>になることも珍しくありません。
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8, marginTop: '0.75rem' }}>
+              3月の中でも特に高いのは月末（26〜31日）で、引越し件数が集中します。3月上旬はまだ比較的空きがあり料金も抑えられる傾向があります。もし日程をずらせるなら、4月上旬まで待つのも一つの選択肢です。4月に入ると需要が落ち着き始め、料金も下がっていきます。
+            </p>
+          </div>
+
           <Disclaimer />
         </>
       )}
