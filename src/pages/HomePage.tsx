@@ -5,21 +5,25 @@ import { AdSense } from '../components/AdSense';
 const tools = [
   {
     path: '/estimate',
+    icon: '🚛',
     title: '引越し費用シミュレーター',
     desc: '間取り・移動距離・時期・オプションから引越し費用の概算を計算。繁忙期・曜日・時間帯による料金差も確認できます。',
   },
   {
     path: '/tanshin',
+    icon: '📦',
     title: '単身パック比較',
     desc: '荷物量と移動距離から、主要業者の単身パック料金を比較。パックに収まるかどうかも判定します。',
   },
   {
     path: '/shoki-hiyo',
+    icon: '🏠',
     title: '引越し初期費用トータル計算',
     desc: '敷金・礼金・仲介手数料・引越し費用など、新生活に必要な初期費用の合計を算出します。',
   },
   {
     path: '/fuyohin',
+    icon: '♻️',
     title: '不用品処分コスト計算',
     desc: '不用品の処分にかかる費用を品目ごとに計算。リサイクル料・粗大ゴミ費用・買取見積もりを比較できます。',
   },
@@ -59,6 +63,7 @@ export function HomePage() {
       <div className="tool-grid">
         {tools.map(tool => (
           <Link key={tool.path} to={tool.path} className="tool-card">
+            <div className="tool-card__icon" aria-hidden="true">{tool.icon}</div>
             <div className="tool-card__title">{tool.title}</div>
             <div className="tool-card__desc">{tool.desc}</div>
           </Link>

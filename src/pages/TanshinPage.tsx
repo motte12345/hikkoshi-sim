@@ -19,15 +19,32 @@ export function TanshinPage() {
   const [prefFrom, setPrefFrom] = useState<Prefecture>('東京都');
   const [prefTo, setPrefTo] = useState<Prefecture>('東京都');
   const [showResult, setShowResult] = useState(false);
+  const [boxError, setBoxError] = useState('');
+  const [distanceError, setDistanceError] = useState('');
 
   const effectiveDistance = distanceMode === 'prefecture'
     ? getPrefectureDistance(prefFrom, prefTo)
     : distanceKm;
 
   const handleCalculate = useCallback(() => {
+    let hasError = false;
+    if (boxCount <= 0) {
+      setBoxError('段ボール数は1箱以上を入力してください');
+      hasError = true;
+    } else {
+      setBoxError('');
+    }
+    if (distanceMode === 'direct' && distanceKm <= 0) {
+      setDistanceError('距離は1km以上を入力してください');
+      hasError = true;
+    } else {
+      setDistanceError('');
+    }
+    if (hasError) return;
     setShowResult(true);
     trackCalculation('tanshin', { box_count: boxCount, distance_km: effectiveDistance });
-  }, [boxCount, effectiveDistance]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [boxCount, distanceMode, distanceKm, effectiveDistance]);
 
   const results = tanshinPacks.map(pack => ({
     pack,
@@ -67,7 +84,7 @@ export function TanshinPage() {
 
       <div className="card">
         <h2 className="card__title">荷物量</h2>
-        <div className="form-group">
+        <div className={`form-group${boxError ? ' form-group--error' : ''}`}>
           <label htmlFor="boxes">段ボール数</label>
           <input
             id="boxes"
@@ -75,9 +92,14 @@ export function TanshinPage() {
             min={1}
             max={100}
             value={boxCount}
-            onChange={e => { setBoxCount(Number(e.target.value)); setShowResult(false); }}
+            onChange={e => {
+              setBoxCount(Number(e.target.value));
+              setShowResult(false);
+              if (Number(e.target.value) > 0) setBoxError('');
+            }}
           />
           <p className="form-hint">段ボール（中サイズ）換算の個数を入力してください</p>
+          {boxError && <p className="form-error-message">{boxError}</p>}
         </div>
         <div className="form-group">
           <label>大型家具の有無</label>
@@ -139,16 +161,21 @@ export function TanshinPage() {
             <p className="form-hint">概算距離: 約{effectiveDistance.toLocaleString()}km</p>
           </div>
         ) : (
-          <div className="form-group">
+          <div className={`form-group${distanceError ? ' form-group--error' : ''}`}>
             <label htmlFor="tanshin-distance">移動距離（km）</label>
             <input
               id="tanshin-distance"
               type="number"
-              min={0}
+              min={1}
               max={3000}
               value={distanceKm}
-              onChange={e => { setDistanceKm(Number(e.target.value)); setShowResult(false); }}
+              onChange={e => {
+                setDistanceKm(Number(e.target.value));
+                setShowResult(false);
+                if (Number(e.target.value) > 0) setDistanceError('');
+              }}
             />
+            {distanceError && <p className="form-error-message">{distanceError}</p>}
           </div>
         )}
       </div>

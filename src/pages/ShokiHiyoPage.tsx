@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { formatCurrency } from '../utils/formatCurrency';
 import { CtaButton } from '../components/CtaButton';
 import { Disclaimer } from '../components/Disclaimer';
@@ -7,6 +8,7 @@ import { AdSense } from '../components/AdSense';
 import { trackCalculation } from '../utils/analytics';
 
 export function ShokiHiyoPage() {
+  const [searchParams] = useSearchParams();
   const [rent, setRent] = useState(80000);
   const [shikikin, setShikikin] = useState(1);
   const [reikin, setReikin] = useState(1);
@@ -16,7 +18,18 @@ export function ShokiHiyoPage() {
   const [movingCost, setMovingCost] = useState(0);
   const [otherCost, setOtherCost] = useState(0);
 
+  const [rentError, setRentError] = useState('');
   const [showResult, setShowResult] = useState(false);
+
+  useEffect(() => {
+    const paramCost = searchParams.get('moving-cost');
+    if (paramCost !== null) {
+      const parsed = Number(paramCost);
+      if (!isNaN(parsed) && parsed > 0) {
+        setMovingCost(parsed);
+      }
+    }
+  }, [searchParams]);
 
   const breakdown = useMemo(() => {
     const shikikinAmount = rent * shikikin;
@@ -58,16 +71,21 @@ export function ShokiHiyoPage() {
       <div className="card">
         <h2 className="card__title">新居の情報</h2>
 
-        <div className="form-group">
+        <div className={`form-group${rentError ? ' form-group--error' : ''}`}>
           <label htmlFor="rent">月額家賃（円）</label>
           <input
             id="rent"
             type="number"
-            min={0}
+            min={1}
             step={1000}
             value={rent}
-            onChange={e => { setRent(Number(e.target.value)); setShowResult(false); }}
+            onChange={e => {
+              setRent(Number(e.target.value));
+              setShowResult(false);
+              if (Number(e.target.value) > 0) setRentError('');
+            }}
           />
+          {rentError && <p className="form-error-message">{rentError}</p>}
         </div>
 
         <div className="form-group">
@@ -167,7 +185,16 @@ export function ShokiHiyoPage() {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => { setShowResult(true); trackCalculation('shoki-hiyo', { rent }); }}
+            onClick={() => {
+              if (rent <= 0) {
+                setRentError('家賃は1円以上を入力してください');
+                return;
+              }
+              setRentError('');
+              setShowResult(true);
+              trackCalculation('shoki-hiyo', { rent });
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             style={{ width: '100%', marginTop: '1rem' }}
           >
             合計を計算する

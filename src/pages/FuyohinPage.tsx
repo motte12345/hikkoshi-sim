@@ -91,7 +91,11 @@ export function FuyohinPage() {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => { setShowResult(true); trackCalculation('fuyohin', { item_count: selectedIds.length }); }}
+            onClick={() => {
+              setShowResult(true);
+              trackCalculation('fuyohin', { item_count: selectedIds.length });
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             style={{ width: '100%', marginTop: '1rem' }}
           >
             処分費用を計算する

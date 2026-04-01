@@ -31,9 +31,9 @@
 - [x] sitemap.xml / robots.txt / 404
 
 ## Phase 6: 広告・アナリティクス
-- [x] AdSense 埋め込み（コンポーネント化、環境変数未設定時は非表示）
-- [x] GA4 埋め込み + カスタムイベント（calculate, cta_click）
+- [x] AdSense 埋め込み
+- [x] GA4 埋め込み + カスタムイベント
 
 ## Phase 7: デプロイ
-- [ ] GitHub リポジトリ作成・push
-- [ ] Cloudflare Pages 連携
+- [x] GitHub リポジトリ作成・push
+- [ ] Cloudflare Pages 連携（手動設定が必要）

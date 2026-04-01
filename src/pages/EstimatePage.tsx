@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   LAYOUTS,
   VOLUMES,
@@ -25,10 +26,14 @@ const STEP_LABELS = ['間取り・荷物', '距離', '時期・曜日', 'オプ�
 
 export function EstimatePage() {
   const [step, setStep] = useState(0);
+  const stepKey = useRef(0);
 
   // Step 1
   const [layout, setLayout] = useState<LayoutType>('1R');
   const [volume, setVolume] = useState<VolumeType>('少なめ');
+
+  // Validation errors
+  const [distanceError, setDistanceError] = useState('');
 
   // Step 2
   const [distanceMode, setDistanceMode] = useState<DistanceMode>('prefecture');
@@ -74,18 +79,30 @@ export function EstimatePage() {
     });
     setResult(breakdown);
     trackCalculation('estimate', { layout, month: String(month), distance_km: effectiveDistance });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [layout, volume, effectiveDistance, month, dayType, timeSlot, selectedOptions]);
 
   const goNext = useCallback(() => {
+    // Step 1 (距離入力) のバリデーション
+    if (step === 1 && distanceMode === 'direct' && distanceKm <= 0) {
+      setDistanceError('距離は1km以上を入力してください');
+      return;
+    }
+    setDistanceError('');
+    stepKey.current += 1;
     if (step < 3) {
       setStep(s => s + 1);
     } else {
       handleCalculate();
     }
-  }, [step, handleCalculate]);
+  }, [step, distanceMode, distanceKm, handleCalculate]);
 
   const goPrev = useCallback(() => {
-    if (step > 0) setStep(s => s - 1);
+    if (step > 0) {
+      setDistanceError('');
+      stepKey.current += 1;
+      setStep(s => s - 1);
+    }
   }, [step]);
 
   return (
@@ -121,7 +138,7 @@ export function EstimatePage() {
           </div>
 
           {step === 0 && (
-            <>
+            <div key={stepKey.current} className="step-content">
               <div className="form-group">
                 <label htmlFor="layout">間取り</label>
                 <select
@@ -153,23 +170,23 @@ export function EstimatePage() {
                 </div>
                 <p className="form-hint">間取りに応じたデフォルト値が自動設定されます</p>
               </div>
-            </>
+            </div>
           )}
 
           {step === 1 && (
-            <>
+            <div key={stepKey.current} className="step-content">
               <div className="distance-toggle">
                 <button
                   type="button"
                   className={distanceMode === 'prefecture' ? 'active' : ''}
-                  onClick={() => setDistanceMode('prefecture')}
+                  onClick={() => { setDistanceMode('prefecture'); setDistanceError(''); }}
                 >
                   都道府県から計算
                 </button>
                 <button
                   type="button"
                   className={distanceMode === 'direct' ? 'active' : ''}
-                  onClick={() => setDistanceMode('direct')}
+                  onClick={() => { setDistanceMode('direct'); setDistanceError(''); }}
                 >
                   距離を直接入力
                 </button>
@@ -203,23 +220,29 @@ export function EstimatePage() {
                   </p>
                 </div>
               ) : (
-                <div className="form-group">
+                <div className={`form-group${distanceError ? ' form-group--error' : ''}`}>
                   <label htmlFor="distance">移動距離（km）</label>
                   <input
                     id="distance"
                     type="number"
-                    min={0}
+                    min={1}
                     max={3000}
                     value={distanceKm}
-                    onChange={e => setDistanceKm(Number(e.target.value))}
+                    onChange={e => {
+                      setDistanceKm(Number(e.target.value));
+                      if (Number(e.target.value) > 0) setDistanceError('');
+                    }}
                   />
+                  {distanceError && (
+                    <p className="form-error-message">{distanceError}</p>
+                  )}
                 </div>
               )}
-            </>
+            </div>
           )}
 
           {step === 2 && (
-            <>
+            <div key={stepKey.current} className="step-content">
               <div className="form-group">
                 <label htmlFor="month">引越し月</label>
                 <select
@@ -271,28 +294,30 @@ export function EstimatePage() {
                 </div>
                 <p className="form-hint">フリー便が最もお得です（業者の都合に合わせるため）</p>
               </div>
-            </>
+            </div>
           )}
 
           {step === 3 && (
-            <div className="form-group">
-              <label>オプション（該当するものにチェック）</label>
-              <div className="checkbox-group">
-                {optionItems.map(opt => (
-                  <label key={opt.id} className="checkbox-option">
-                    <input
-                      type="checkbox"
-                      checked={selectedOptions.includes(opt.id)}
-                      onChange={() => toggleOption(opt.id)}
-                    />
-                    <div className="checkbox-option__info">
-                      <div className="checkbox-option__name">{opt.name}</div>
-                      <div className="checkbox-option__price">
-                        {formatCurrency(opt.price)}
+            <div key={stepKey.current} className="step-content">
+              <div className="form-group">
+                <label>オプション（該当するものにチェック）</label>
+                <div className="checkbox-group">
+                  {optionItems.map(opt => (
+                    <label key={opt.id} className="checkbox-option">
+                      <input
+                        type="checkbox"
+                        checked={selectedOptions.includes(opt.id)}
+                        onChange={() => toggleOption(opt.id)}
+                      />
+                      <div className="checkbox-option__info">
+                        <div className="checkbox-option__name">{opt.name}</div>
+                        <div className="checkbox-option__price">
+                          {formatCurrency(opt.price)}
+                        </div>
                       </div>
-                    </div>
-                  </label>
-                ))}
+                    </label>
+                  ))}
+                </div>
               </div>
             </div>
           )}
@@ -363,6 +388,16 @@ export function EstimatePage() {
                 </tr>
               </tfoot>
             </table>
+          </div>
+
+          <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+            <Link
+              to={`/shoki-hiyo?moving-cost=${Math.round((result.totalMin + result.totalMax) / 2)}`}
+              className="btn btn-secondary"
+              style={{ display: 'inline-flex' }}
+            >
+              この結果を初期費用計算に反映する
+            </Link>
           </div>
 
           <CtaButton toolName="estimate" />
