@@ -129,7 +129,7 @@ export function EstimatePage() {
               <button
                 key={label}
                 className={`step-indicator ${i === step ? 'step-indicator--active' : ''} ${i < step ? 'step-indicator--done' : ''}`}
-                onClick={() => setStep(i)}
+                onClick={() => { if (i <= step) setStep(i); }}
                 type="button"
               >
                 {label}

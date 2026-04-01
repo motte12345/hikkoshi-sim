@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import { formatCurrency } from '../utils/formatCurrency';
 import { CtaButton } from '../components/CtaButton';
 import { Disclaimer } from '../components/Disclaimer';
@@ -25,7 +25,7 @@ export function ShokiHiyoPage() {
     const paramCost = searchParams.get('moving-cost');
     if (paramCost !== null) {
       const parsed = Number(paramCost);
-      if (!isNaN(parsed) && parsed > 0) {
+      if (!isNaN(parsed) && parsed > 0 && parsed <= 10_000_000) {
         setMovingCost(parsed);
       }
     }
@@ -164,7 +164,7 @@ export function ShokiHiyoPage() {
             onChange={e => { setMovingCost(Number(e.target.value)); setShowResult(false); }}
           />
           <p className="form-hint">
-            <a href="/estimate">引越し費用シミュレーター</a>で計算した結果を入力できます
+            <Link to="/estimate">引越し費用シミュレーター</Link>で計算した結果を入力できます
           </p>
         </div>
 

@@ -134,14 +134,14 @@ export function TanshinPage() {
           <button
             type="button"
             className={distanceMode === 'prefecture' ? 'active' : ''}
-            onClick={() => setDistanceMode('prefecture')}
+            onClick={() => { setDistanceMode('prefecture'); setDistanceError(''); }}
           >
             都道府県から計算
           </button>
           <button
             type="button"
             className={distanceMode === 'direct' ? 'active' : ''}
-            onClick={() => setDistanceMode('direct')}
+            onClick={() => { setDistanceMode('direct'); setDistanceError(''); }}
           >
             距離を直接入力
           </button>
