@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const PUBLISHER_ID = import.meta.env.VITE_ADSENSE_PUBLISHER_ID || '';
+const PUBLISHER_ID = 'ca-pub-6514048542181621';
 
 interface AdSenseProps {
   readonly slot: string;
@@ -13,7 +13,7 @@ export function AdSense({ slot, format = 'auto', style }: AdSenseProps) {
   const pushed = useRef(false);
 
   useEffect(() => {
-    if (!PUBLISHER_ID || pushed.current) return;
+    if (pushed.current) return;
     try {
       const adsbygoogle = (window as unknown as Record<string, unknown[]>).adsbygoogle;
       if (adsbygoogle) {
@@ -24,8 +24,6 @@ export function AdSense({ slot, format = 'auto', style }: AdSenseProps) {
       // AdSense not loaded (dev environment, ad blocker, etc.)
     }
   }, []);
-
-  if (!PUBLISHER_ID) return null;
 
   return (
     <div style={{ marginTop: '1.5rem', textAlign: 'center', ...style }}>
