@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { formatCurrency } from '../utils/formatCurrency';
 import { CtaButton } from '../components/CtaButton';
 import { Disclaimer } from '../components/Disclaimer';
@@ -7,29 +7,26 @@ import { Seo } from '../components/Seo';
 import { AdSense } from '../components/AdSense';
 import { trackCalculation } from '../utils/analytics';
 
+function getInitialMovingCost(): number {
+  const params = new URLSearchParams(window.location.search);
+  const paramCost = params.get('moving-cost');
+  if (paramCost === null) return 0;
+  const parsed = Number(paramCost);
+  return (!isNaN(parsed) && parsed > 0 && parsed <= 10_000_000) ? parsed : 0;
+}
+
 export function ShokiHiyoPage() {
-  const [searchParams] = useSearchParams();
   const [rent, setRent] = useState(80000);
   const [shikikin, setShikikin] = useState(1);
   const [reikin, setReikin] = useState(1);
   const [chukai, setChukai] = useState(1);
   const [insurance, setInsurance] = useState(15000);
   const [keyChange, setKeyChange] = useState(15000);
-  const [movingCost, setMovingCost] = useState(0);
+  const [movingCost, setMovingCost] = useState(getInitialMovingCost);
   const [otherCost, setOtherCost] = useState(0);
 
   const [rentError, setRentError] = useState('');
   const [showResult, setShowResult] = useState(false);
-
-  useEffect(() => {
-    const paramCost = searchParams.get('moving-cost');
-    if (paramCost !== null) {
-      const parsed = Number(paramCost);
-      if (!isNaN(parsed) && parsed > 0 && parsed <= 10_000_000) {
-        setMovingCost(parsed);
-      }
-    }
-  }, [searchParams]);
 
   const breakdown = useMemo(() => {
     const shikikinAmount = rent * shikikin;

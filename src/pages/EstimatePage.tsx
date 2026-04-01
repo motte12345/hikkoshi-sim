@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
   LAYOUTS,
@@ -26,7 +26,7 @@ const STEP_LABELS = ['間取り・荷物', '距離', '時期・曜日', 'オプ�
 
 export function EstimatePage() {
   const [step, setStep] = useState(0);
-  const stepKey = useRef(0);
+  const [stepKey, setStepKey] = useState(0);
 
   // Step 1
   const [layout, setLayout] = useState<LayoutType>('1R');
@@ -89,7 +89,7 @@ export function EstimatePage() {
       return;
     }
     setDistanceError('');
-    stepKey.current += 1;
+    setStepKey(k => k + 1);
     if (step < 3) {
       setStep(s => s + 1);
     } else {
@@ -100,7 +100,7 @@ export function EstimatePage() {
   const goPrev = useCallback(() => {
     if (step > 0) {
       setDistanceError('');
-      stepKey.current += 1;
+      setStepKey(k => k + 1);
       setStep(s => s - 1);
     }
   }, [step]);
@@ -108,7 +108,7 @@ export function EstimatePage() {
   return (
     <>
       <Seo
-        title="引越し費用シミュレーター"
+        title="引越し費用の計算"
         description="間取り・移動距離・時期・オプションから引越し費用の概算を計算。繁忙期・曜日・時間帯による料金差を明示します。"
         path="/estimate"
         faqItems={[
@@ -138,7 +138,7 @@ export function EstimatePage() {
           </div>
 
           {step === 0 && (
-            <div key={stepKey.current} className="step-content">
+            <div key={stepKey} className="step-content">
               <div className="form-group">
                 <label htmlFor="layout">間取り</label>
                 <select
@@ -174,7 +174,7 @@ export function EstimatePage() {
           )}
 
           {step === 1 && (
-            <div key={stepKey.current} className="step-content">
+            <div key={stepKey} className="step-content">
               <div className="distance-toggle">
                 <button
                   type="button"
@@ -242,7 +242,7 @@ export function EstimatePage() {
           )}
 
           {step === 2 && (
-            <div key={stepKey.current} className="step-content">
+            <div key={stepKey} className="step-content">
               <div className="form-group">
                 <label htmlFor="month">引越し月</label>
                 <select
@@ -298,7 +298,7 @@ export function EstimatePage() {
           )}
 
           {step === 3 && (
-            <div key={stepKey.current} className="step-content">
+            <div key={stepKey} className="step-content">
               <div className="form-group">
                 <label>オプション（該当するものにチェック）</label>
                 <div className="checkbox-group">
