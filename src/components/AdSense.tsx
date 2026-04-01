@@ -9,7 +9,7 @@ interface AdSenseProps {
 }
 
 export function AdSense({ slot, format = 'auto', style }: AdSenseProps) {
-  const adRef = useRef<HTMLModElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const pushed = useRef(false);
 
   useEffect(() => {
@@ -26,11 +26,13 @@ export function AdSense({ slot, format = 'auto', style }: AdSenseProps) {
   }, []);
 
   return (
-    <div style={{ marginTop: '1.5rem', textAlign: 'center', ...style }}>
+    <div
+      ref={containerRef}
+      style={{ marginTop: '1.5rem', textAlign: 'center', overflow: 'hidden', minHeight: 0, ...style }}
+    >
       <ins
-        ref={adRef}
         className="adsbygoogle"
-        style={{ display: 'block' }}
+        style={{ display: 'block', minHeight: 0 }}
         data-ad-client={PUBLISHER_ID}
         data-ad-slot={slot}
         data-ad-format={format}
