@@ -9,16 +9,17 @@ import { Seo } from '../components/Seo';
 import { AdSense } from '../components/AdSense';
 import { ProductLinks } from '../components/ProductLinks';
 import { trackCalculation } from '../utils/analytics';
+import { useSessionState } from '../hooks/useSessionState';
 
 type DistanceMode = 'direct' | 'prefecture';
 
 export function TanshinPage() {
-  const [boxCount, setBoxCount] = useState(15);
-  const [hasLargeFurniture, setHasLargeFurniture] = useState(false);
-  const [distanceMode, setDistanceMode] = useState<DistanceMode>('prefecture');
-  const [distanceKm, setDistanceKm] = useState(50);
-  const [prefFrom, setPrefFrom] = useState<Prefecture>('東京都');
-  const [prefTo, setPrefTo] = useState<Prefecture>('東京都');
+  const [boxCount, setBoxCount] = useSessionState('tan_boxCount', 15);
+  const [hasLargeFurniture, setHasLargeFurniture] = useSessionState('tan_largeFurn', false);
+  const [distanceMode, setDistanceMode] = useSessionState<DistanceMode>('tan_distMode', 'prefecture');
+  const [distanceKm, setDistanceKm] = useSessionState('tan_distKm', 50);
+  const [prefFrom, setPrefFrom] = useSessionState<Prefecture>('tan_prefFrom', '東京都');
+  const [prefTo, setPrefTo] = useSessionState<Prefecture>('tan_prefTo', '東京都');
   const [showResult, setShowResult] = useState(false);
   const [boxError, setBoxError] = useState('');
   const [distanceError, setDistanceError] = useState('');

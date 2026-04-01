@@ -6,24 +6,31 @@ import { Disclaimer } from '../components/Disclaimer';
 import { Seo } from '../components/Seo';
 import { AdSense } from '../components/AdSense';
 import { trackCalculation } from '../utils/analytics';
+import { useSessionState } from '../hooks/useSessionState';
 
 function getInitialMovingCost(): number {
   const params = new URLSearchParams(window.location.search);
   const paramCost = params.get('moving-cost');
-  if (paramCost === null) return 0;
+  if (paramCost === null) {
+    try {
+      const stored = sessionStorage.getItem('hikkoshi_shoki_movingCost');
+      if (stored !== null) return JSON.parse(stored) as number;
+    } catch { /* ignore */ }
+    return 0;
+  }
   const parsed = Number(paramCost);
   return (!isNaN(parsed) && parsed > 0 && parsed <= 10_000_000) ? parsed : 0;
 }
 
 export function ShokiHiyoPage() {
-  const [rent, setRent] = useState(80000);
-  const [shikikin, setShikikin] = useState(1);
-  const [reikin, setReikin] = useState(1);
-  const [chukai, setChukai] = useState(1);
-  const [insurance, setInsurance] = useState(15000);
-  const [keyChange, setKeyChange] = useState(15000);
-  const [movingCost, setMovingCost] = useState(getInitialMovingCost);
-  const [otherCost, setOtherCost] = useState(0);
+  const [rent, setRent] = useSessionState('shoki_rent', 80000);
+  const [shikikin, setShikikin] = useSessionState('shoki_shikikin', 1);
+  const [reikin, setReikin] = useSessionState('shoki_reikin', 1);
+  const [chukai, setChukai] = useSessionState('shoki_chukai', 1);
+  const [insurance, setInsurance] = useSessionState('shoki_insurance', 15000);
+  const [keyChange, setKeyChange] = useSessionState('shoki_keyChange', 15000);
+  const [movingCost, setMovingCost] = useSessionState('shoki_movingCost', getInitialMovingCost());
+  const [otherCost, setOtherCost] = useSessionState('shoki_otherCost', 0);
 
   const [rentError, setRentError] = useState('');
   const [showResult, setShowResult] = useState(false);

@@ -5,9 +5,10 @@ import { Disclaimer } from '../components/Disclaimer';
 import { Seo } from '../components/Seo';
 import { AdSense } from '../components/AdSense';
 import { trackCalculation } from '../utils/analytics';
+import { useSessionState } from '../hooks/useSessionState';
 
 export function FuyohinPage() {
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [selectedIds, setSelectedIds] = useSessionState<string[]>('fuyohin_ids', []);
   const [showResult, setShowResult] = useState(false);
 
   const toggleItem = (id: string) => {

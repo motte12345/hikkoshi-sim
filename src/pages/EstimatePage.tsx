@@ -20,6 +20,7 @@ import { Seo } from '../components/Seo';
 import { AdSense } from '../components/AdSense';
 import { ProductLinks } from '../components/ProductLinks';
 import { trackCalculation } from '../utils/analytics';
+import { useSessionState } from '../hooks/useSessionState';
 
 type DistanceMode = 'direct' | 'prefecture';
 
@@ -30,25 +31,25 @@ export function EstimatePage() {
   const [stepKey, setStepKey] = useState(0);
 
   // Step 1
-  const [layout, setLayout] = useState<LayoutType>('1R');
-  const [volume, setVolume] = useState<VolumeType>('少なめ');
+  const [layout, setLayout] = useSessionState<LayoutType>('est_layout', '1R');
+  const [volume, setVolume] = useSessionState<VolumeType>('est_volume', '少なめ');
 
   // Validation errors
   const [distanceError, setDistanceError] = useState('');
 
   // Step 2
-  const [distanceMode, setDistanceMode] = useState<DistanceMode>('prefecture');
-  const [distanceKm, setDistanceKm] = useState(50);
-  const [prefFrom, setPrefFrom] = useState<Prefecture>('東京都');
-  const [prefTo, setPrefTo] = useState<Prefecture>('東京都');
+  const [distanceMode, setDistanceMode] = useSessionState<DistanceMode>('est_distMode', 'prefecture');
+  const [distanceKm, setDistanceKm] = useSessionState('est_distKm', 50);
+  const [prefFrom, setPrefFrom] = useSessionState<Prefecture>('est_prefFrom', '東京都');
+  const [prefTo, setPrefTo] = useSessionState<Prefecture>('est_prefTo', '東京都');
 
   // Step 3
-  const [month, setMonth] = useState(new Date().getMonth() + 1);
-  const [dayType, setDayType] = useState<DayType>('平日');
-  const [timeSlot, setTimeSlot] = useState<TimeSlot>('フリー便');
+  const [month, setMonth] = useSessionState('est_month', new Date().getMonth() + 1);
+  const [dayType, setDayType] = useSessionState<DayType>('est_dayType', '平日');
+  const [timeSlot, setTimeSlot] = useSessionState<TimeSlot>('est_timeSlot', 'フリー便');
 
   // Step 4
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = useSessionState<string[]>('est_options', []);
 
   // Result
   const [result, setResult] = useState<EstimateBreakdown | null>(null);
@@ -56,13 +57,13 @@ export function EstimatePage() {
   const handleLayoutChange = useCallback((newLayout: LayoutType) => {
     setLayout(newLayout);
     setVolume(defaultVolumeByLayout[newLayout]);
-  }, []);
+  }, [setLayout, setVolume]);
 
   const toggleOption = useCallback((id: string) => {
     setSelectedOptions(prev =>
       prev.includes(id) ? prev.filter(o => o !== id) : [...prev, id]
     );
-  }, []);
+  }, [setSelectedOptions]);
 
   const effectiveDistance = distanceMode === 'prefecture'
     ? getPrefectureDistance(prefFrom, prefTo)
