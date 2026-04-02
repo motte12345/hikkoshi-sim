@@ -1,52 +1,26 @@
 # 引越し費用シミュレーター 実装計画
 
-## Phase 1: プロジェクト基盤（Vite + React + ルーティング）
+## Phase 1〜7: 全完了（2026-04-01〜02）
 
-- Vite + React + TypeScript プロジェクト作成
-- React Router でページルーティング設定
-- 共通レイアウト（ヘッダー、フッター、免責事項）
-- レスポンシブCSS基盤
-- .env.example 作成
+- Phase 1: プロジェクト基盤（Vite + React + TypeScript + Router）
+- Phase 2: 料金データ整備（料金テーブル、都道府県距離、単身パック、不用品）
+- Phase 3: 引越し費用シミュレーター（ステップ形式、計算ロジック、結果表示）
+- Phase 4: サブツール3種（単身パック比較、初期費用、不用品処分）
+- Phase 5: トップ + About + SEO（OGP、構造化データ、補足コンテンツ）
+- Phase 6: 広告・アナリティクス（GA4、AdSense、A8引越し侍、Amazon/楽天）
+- Phase 7: デプロイ（GitHub + Cloudflare Pages自動デプロイ）
 
-## Phase 2: 料金データ整備
+## 追加実装（2026-04-02）
 
-- 料金テーブルJSON（basePriceByLayout, distanceSurcharge, seasonMultiplier, options等）
-- 都道府県間距離マトリクスJSON（47×47）
-- 単身パック料金データJSON
-- 不用品処分費用データJSON
+- UI/UX改善（ハンバーガーメニュー、アニメーション、CTA強化）
+- コードレビュー・セキュリティレビュー指摘修正
+- 入力値のsessionStorage保持
+- OGP画像生成
+- アフィリエイトリンク設定
 
-## Phase 3: メインツール — 引越し費用シミュレーター `/estimate`
+## 現在のフェーズ: 運用
 
-- ステップ形式フォーム（間取り→距離→時期→オプション）
-- 計算ロジック（±15%レンジ出力）
-- 結果表示（概算費用、内訳テーブル）
-- CTAボタン（アフィリエイトリンク仮）
-
-## Phase 4: サブツール3種
-
-- 単身パック比較 `/tanshin`
-- 初期費用トータル計算 `/shoki-hiyo`
-- 不用品処分コスト計算 `/fuyohin`
-
-## Phase 5: トップページ + About + SEO
-
-- トップページ（ツール一覧カード）
-- About・免責ページ
-- SEO（meta, OGP, FAQSchema, sitemap.xml, robots.txt）
-- 404ページ
-
-## Phase 6: 広告・アナリティクス連携
-
-- AdSense スクリプト埋め込み + 広告ユニット配置
-- GA4 埋め込み + カスタムイベント送信
-- 環境変数からID注入
-
-## Phase 7: デプロイ
-
-- GitHub リポジトリ作成
-- Cloudflare Pages 連携設定
-- 本番確認
-
----
-
-## 現在のフェーズ: Phase 5 途中（SEO詳細設定が残り）→ Phase 6 待ち
+今後の展開案:
+- 検索順位・アクセス推移を見てコンテンツ追加
+- 新ツール追加（引越しチェックリスト等）
+- カスタムドメイン設定
