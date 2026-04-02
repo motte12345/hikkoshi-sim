@@ -184,6 +184,21 @@ a:hover {
   color: var(--color-text-secondary);
 }
 
+.site-footer__related {
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.site-footer__related a {
+  color: var(--color-primary);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.site-footer__related a:hover {
+  text-decoration: underline;
+}
+
 .site-footer__links {
   margin-bottom: 0.5rem;
 }

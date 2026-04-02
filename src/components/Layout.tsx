@@ -57,6 +57,15 @@ export function Layout() {
         <Outlet />
       </main>
       <footer className="site-footer">
+        <div className="site-footer__related">
+          関連ツール:
+          <a href="https://denkidai-sim.pages.dev/" target="_blank" rel="noopener noreferrer">
+            電気代カリキュレーター
+          </a>
+          <a href="https://naiso-calc.pages.dev/" target="_blank" rel="noopener noreferrer">
+            内装材料カリキュレーター
+          </a>
+        </div>
         <div className="site-footer__links">
           <Link to="/about">概要・免責事項</Link>
         </div>
