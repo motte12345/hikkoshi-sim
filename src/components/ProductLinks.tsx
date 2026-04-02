@@ -8,7 +8,10 @@ export function ProductLinks() {
 
   return (
     <div className="card product-links">
-      <h2 className="card__title">引越しに便利なグッズ</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '2px solid var(--color-primary)' }}>
+        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0 }}>引越しに便利なグッズ</h2>
+        <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>PR</span>
+      </div>
       <div className="product-grid">
         {affiliateProducts.map((product) => (
           <div key={product.id} className="product-card">
