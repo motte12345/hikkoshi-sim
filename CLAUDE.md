@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 引越し費用シミュレーター — 引越し費用の概算を出し、正確な見積もりへの導線を作るReact静的サイト。
 収益モデル: AdSense + 引越し侍アフィリエイト（A8.net） + Amazon/楽天アフィリエイト。
 
-- 本番URL: https://hikkoshi-sim.pages.dev/
+- 本番URL: https://hikkoshi.simtool.dev/
 - GitHub: https://github.com/motte12345/hikkoshi-sim
 - Cloudflare Pagesで自動デプロイ（mainへのpush）
 

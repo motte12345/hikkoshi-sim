@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://hikkoshi-sim.pages.dev/sitemap.xml
+Sitemap: https://hikkoshi.simtool.dev/sitemap.xml

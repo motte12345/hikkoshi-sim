@@ -8,7 +8,7 @@ interface SeoProps {
 }
 
 const SITE_NAME = '引越し費用シミュレーター';
-const BASE_URL = 'https://hikkoshi-sim.pages.dev';
+const BASE_URL = 'https://hikkoshi.simtool.dev';
 
 const WEBSITE_SCHEMA = {
   '@context': 'https://schema.org',

@@ -59,10 +59,10 @@ export function Layout() {
       <footer className="site-footer">
         <div className="site-footer__related">
           関連ツール:
-          <a href="https://denkidai-sim.pages.dev/" target="_blank" rel="noopener noreferrer">
+          <a href="https://denkidai.simtool.dev/" target="_blank" rel="noopener noreferrer">
             電気代カリキュレーター
           </a>
-          <a href="https://naiso-calc.pages.dev/" target="_blank" rel="noopener noreferrer">
+          <a href="https://naiso.simtool.dev/" target="_blank" rel="noopener noreferrer">
             内装材料カリキュレーター
           </a>
         </div>

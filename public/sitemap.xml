@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hikkoshi-sim.pages.dev/</loc>
+    <loc>https://hikkoshi.simtool.dev/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hikkoshi-sim.pages.dev/estimate</loc>
+    <loc>https://hikkoshi.simtool.dev/estimate</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hikkoshi-sim.pages.dev/tanshin</loc>
+    <loc>https://hikkoshi.simtool.dev/tanshin</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hikkoshi-sim.pages.dev/shoki-hiyo</loc>
+    <loc>https://hikkoshi.simtool.dev/shoki-hiyo</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hikkoshi-sim.pages.dev/fuyohin</loc>
+    <loc>https://hikkoshi.simtool.dev/fuyohin</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hikkoshi-sim.pages.dev/about</loc>
+    <loc>https://hikkoshi.simtool.dev/about</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
